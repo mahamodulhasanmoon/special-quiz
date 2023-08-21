@@ -1,46 +1,60 @@
-import mongoose from "mongoose";
+const { Schema, model } = require('mongoose')
 
-const specialQuizSchema = new mongoose.Schema(
-  {
-    title: String,
-    description: String,
-    thumbnail: String,
-    price: Number,
-    availabilityFrom: Date,
-    availabilityTo: Date,
-    sector: String,
-  },
-  {timestamps: true}
+
+const specialQuizSchema = Schema(
+    {
+        title: String,
+        description: String,
+        thumbnail: String,
+        price: Number,
+        availabilityFrom: Date,
+        availabilityTo: Date,
+        sector: String,
+        enrolledBy: Array,
+        duration: Number,
+        studentsMark:{
+            type:Schema.Types.ObjectId,
+            ref:'StudentsMark'
+        },
+        questions:{
+            type:Schema.Types.ObjectId,
+            ref:'Questions'
+        }
+        
+    },
+    {
+        timestamps: true
+    }
 );
 
-const studentMarksSchema = new mongoose.Schema(
-  {
-    student: String,
-    quizId: String,
-    totalSpentTime: Number,
-  },
-  {
-    timestamps: true,
-  }
+module.exports.SpecialQuiz = model('SpecialQuiz', specialQuizSchema);
+
+const studentMarksSchema = Schema(
+    {
+        student: String,
+        quizId: String,
+        totalSpentTime: Number,
+    },
+    {
+        timestamps: true,
+    }
+);
+module.exports.StudentsMark = model('StudentsMark', studentMarksSchema);
+
+const questionsSchema = new Schema(
+    {
+
+        question: String,
+        answers: String,
+       
+        opitons: Array,
+        explanations: String,
+    },
+    {
+        timestamps: true
+    }
 );
 
-const questionsSchema = new mongoose.Schema(
-  {
-    questions: [{}],
-    question: String,
-    answers: String,
-    duration: Number,
-    opitons: [{}],
-    explanations: String,
-  },
-  {timestamps: true}
-);
+module.exports.StudentsMark = model('Questions', questionsSchema);
 
-export default mongoose.model(
-  "SpecialQuiz",
-  specialQuizSchema,
-  "studentMarks",
-  studentMarksSchema,
-  "questions",
-  questionsSchema
-);
+
