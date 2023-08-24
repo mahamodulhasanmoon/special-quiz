@@ -1,7 +1,8 @@
-const app = require("./app/app")
+
 const colors = require('colors');
 const dbConnect = require('./db/db.js')
 const express = require('express');
+const app = require('./app/app.js');
 require('dotenv').config();
 const port =process.env.PORT || 5000
 

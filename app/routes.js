@@ -1,16 +1,15 @@
-const express = require('express');
-const app = require('./app');
-const specialQuizRouter = require('../modules/specialQuizes/specialQuiz.routes');
-const routes = express.Router();
+const express = require("express");
 
+const specialQuizRouter = require("../modules/specialQuizes/specialQuiz.routes");
+const router = express.Router();
 
-app.use(specialQuizRouter)
+router.use(specialQuizRouter);
 // check health routes
-routes.get("/health", (_req, res) => {
-    res.status(200).json({ 
-      status:200,
-       message: "success" 
-      });
+router.get("/health", (_req, res) => {
+  res.status(200).json({
+    status: 200,
+    message: "success",
   });
+});
 
-module.exports = routes
+module.exports = router;
