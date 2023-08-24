@@ -12,7 +12,7 @@ const dbURL = process.env.DB_URL
 
 dbConnect(dbURL)
 .then(()=>{
-    console.log("db Connection Successfull".magenta)
-    app.listen(port, ()=>console.log(`listening on port http://localhost:${port}`.yellow))
+    console.log("db Connection Successfull".bgGreen.bgCyan)
+    app.listen(port, ()=>console.log(`listening on port http://localhost:${port}`))
 })
 .catch(error=>console.log(error.message))
